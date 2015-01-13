@@ -92,7 +92,6 @@ public class AppApi {
 		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		intent.setDataAndType(Uri.parse("file://" + sApkPath),"application/vnd.android.package-archive");
 		EAUtil.GetEAContext().startActivity(intent);
-
 	}
 
 	static public void RemoveApp(String sPackageName) {

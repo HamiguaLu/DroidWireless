@@ -57,7 +57,6 @@ public class ContactApi {
 		cur.close();
 		return m_iContactCount;
 	}
-	
 
 	static public int RemoveContactByID(int iID) {
 		return EADefine.EA_RET_FAILED;
@@ -143,40 +142,25 @@ public class ContactApi {
 		return bitmap;
 	}
 
-
-	static public List<ContactInfo> GetContactList(int iFrom, int iTo) {
-		if (iFrom < 0 || iTo < iFrom) {
-			return null;
-		}
-
+	static public List<ContactInfo> GetContactList(int iFrom) {
 		ContentResolver resolver = EAUtil.GetContentResolver();
 		final String sortOrder = "display_name ASC";
 		Cursor cur = resolver.query(ContactsContract.Contacts.CONTENT_URI,
 				null, null, null, sortOrder);
-		if (cur == null || !cur.moveToFirst()) {
+		if (cur == null || !cur.moveToPosition(iFrom)) {
+			if (cur != null) {
+				cur.close();
+			}
 			return null;
 		}
-
-		if (false == cur.moveToPosition(iFrom)) {
-			cur.close();
-			return null;
-		}
-
-		int iCurCount = cur.getCount();
-		if (iFrom + iCurCount < iTo) {
-			iTo = iFrom + iCurCount;
-		}
-
-		int iContactCount = iTo - iFrom;
-
-		int idColumn = cur.getColumnIndex(ContactsContract.Contacts._ID);
-
-		int displayNameColumn = cur
-				.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
 
 		List<ContactInfo> clist = new ArrayList<ContactInfo>();
 
-		for (int i = 0; i < iContactCount; ++i) {
+		do {
+			int idColumn = cur.getColumnIndex(ContactsContract.Contacts._ID);
+
+			int displayNameColumn = cur
+					.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
 
 			// 获得联系人的ID号
 			String contactId = cur.getString(idColumn);
@@ -186,9 +170,6 @@ public class ContactApi {
 				disPlayName = "";
 			}
 
-			/*
-			 * if (i == 10){ disPlayName = "aaa"; }
-			 */
 			// 查看该联系人有多少个电话号码。如果没有这返回值为0
 			int phoneCount = cur
 					.getInt(cur
@@ -212,8 +193,6 @@ public class ContactApi {
 					} while (phones.moveToNext());
 				}
 			}
-
-			cur.moveToNext();
 
 			if (sPhones.length() < 1) {
 				continue;
@@ -240,7 +219,8 @@ public class ContactApi {
 
 				clist.add(c);
 			}
-		}
+	
+		} while (cur.moveToNext() && clist.size() < EADefine.MAX_LIST_SIZE);
 
 		cur.close();
 		return clist;
@@ -577,16 +557,16 @@ public class ContactApi {
 				for (int j = 0; j < c.EMailList.size(); j++) {
 					String p = c.EMailList.get(j);
 					String[] p1 = p.split(":");
-					if (p1.length != 2){
+					if (p1.length != 2) {
 						continue;
 					}
-					
+
 					int iType = Integer.parseInt(p1[0]);
 					String sEmail = p1[1];
-					if (sEmail == ""){
+					if (sEmail == "") {
 						continue;
 					}
-					
+
 					ops.add(ContentProviderOperation
 							.newInsert(ContactsContract.Data.CONTENT_URI)
 							.withValueBackReference(
@@ -756,15 +736,15 @@ public class ContactApi {
 	}
 
 	@SuppressWarnings("unused")
-	private List<ContactInfo>  getKeepedContacts(int iFrom,int iTo) {
+	private List<ContactInfo> getKeepedContacts(int iFrom, int iTo) {
 		if (iFrom < 0 || iTo < iFrom) {
 			return null;
 		}
 
 		ContentResolver resolver = EAUtil.GetContentResolver();
 
-		Cursor cur = resolver.query(ContactsContract.Contacts.CONTENT_URI, null,
-				ContactsContract.Contacts.STARRED + " =  1 ", null, null);
+		Cursor cur = resolver.query(ContactsContract.Contacts.CONTENT_URI,
+				null, ContactsContract.Contacts.STARRED + " =  1 ", null, null);
 
 		if (cur == null || !cur.moveToFirst()) {
 			return null;

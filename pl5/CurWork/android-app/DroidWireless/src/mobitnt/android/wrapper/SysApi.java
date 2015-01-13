@@ -136,9 +136,11 @@ public class SysApi {
 			while ((sItem = localBufferedReader.readLine()) != null) {
 				if (sItem.contains("MemTotal")){
 					sItem = sItem.replace("MemTotal:", "");
+					localBufferedReader.close();
 					return sItem.trim();
 				}
 			}
+			localBufferedReader.close();
 		} catch (IOException e) {
 		}
 		
