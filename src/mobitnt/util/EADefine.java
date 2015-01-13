@@ -13,6 +13,8 @@ public class EADefine {
 	public static final int MAX_HTML_TEMPLATE_FILE_SIZE = 1024 * 10;
 	public static final char EA_FILE_SEPERATOR = File.separatorChar;
 	
+	public static final int MAX_LIST_SIZE = 30;
+	
 	public static final String ValDelimiter = "&ensp;";
 	
 	public static final String EA_PREF_NAME = "EaSrvPref";

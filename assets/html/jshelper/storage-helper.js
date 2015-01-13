@@ -367,21 +367,45 @@ function OnStorageInit() {
 	$("#BTN-CREATE").html(sLNewFolder);
 	$("#BTN-RENAME").html(sLReNameFile);
 		
-	$("#FileList").html("");
-	
 	g_iFileTotalPage = 0;
 	g_iFileStartItem = 0;
 
 	g_sCurrentFolder = "/";
-	GetRootFolder();
 	
+	GetSDCardList();
+		
+	$('#sdcardList').hide();
+	
+	$("#FolderPath").html("");
+	$("#FileList").html("");
+	
+	$('#file_upload').uploadify({
+				'swf'      : '/uploadify.swf',
+				'debug'    : false,
+				'uploader' : '/uploadify.xml',
+				 'onUploadSuccess' : function(file, data1, response) {
+					//alert(response);
+					OnRefreshContent();
+					alert('The file ' + file.name + ' was successfully uploaded:' + data1);
+					
+				},
+				'onUploadStart' : function(file) {
+					//alert(file.size);
+					var sPath = g_sRootFolder + "/" + g_sCurrentFolder + "/" + file.name;
+					sPath = checkPath(sPath);
+					$('#file_upload').uploadify('settings','formData',{'currentfolder':sPath, 'filesize' : file.size, 'action' : 'uploadfile' });
+				}
+			});
+			
+			
+	$("#PathListSel").change(function() { OnSdCardChanged();});
 	$("#FolderPath").html("");
 
 	$("#file-div").fadeIn(1000);
 	
-	if (!$.browser.msie) {
+	/*if (!$.browser.msie) {
 		InitDragAndDrop("UP-DROP-AREA");
-	}
+	}*/
 }
 
 function FileUploadEventListener(evt,arg){

@@ -82,44 +82,42 @@ public class ContactManager extends PageGen {
 	public String ProcessRequest(String request, Properties parms) {
 		try {
 			int iFrom = 0;
-			int iTo = 0;
+			//int iTo = 0;
 
 			String sAction = parms.getProperty(EADefine.EA_ACT_ACTION_TAG,
 					EADefine.EA_ACT_GET_CONTACT_LIST);
 			if (sAction.equals(EADefine.EA_ACT_GET_CONTACT_LIST)) {
 				String sFrom = parms.getProperty(EADefine.EA_ACT_FROM_TAG, "0");
-				String sTo = parms.getProperty(EADefine.EA_ACT_TO_TAG, "0");
+				//String sTo = parms.getProperty(EADefine.EA_ACT_TO_TAG, "0");
 
 				iFrom = Integer.valueOf(sFrom);
-				iTo = Integer.valueOf(sTo);
+				//iTo = Integer.valueOf(sTo);
 
 				int iTotalCount = ContactApi.GetContactCount();
 				if (iFrom > iTotalCount || iTotalCount < 1) {
 					return GenRetCode(EADefine.EA_RET_END_OF_FILE);
 				}
 
-				iTo = iTotalCount;
+				//iTo = iTotalCount;
 
 				// 这里需要分页处理
-				return GetContactList(iFrom, iTo);
+				return GetContactList(iFrom);
 			}
 			
 			if (sAction.equals(EADefine.EA_ACT_GET_CONTACT_LIST_XML)) {
 				String sFrom = parms.getProperty(EADefine.EA_ACT_FROM_TAG, "0");
-				String sTo = parms.getProperty(EADefine.EA_ACT_TO_TAG, "0");
+				//String sTo = parms.getProperty(EADefine.EA_ACT_TO_TAG, "0");
 
 				iFrom = Integer.valueOf(sFrom);
-				iTo = Integer.valueOf(sTo);
+				//iTo = Integer.valueOf(sTo);
 
 				int iTotalCount = ContactApi.GetContactCount();
 				if (iFrom > iTotalCount || iTotalCount < 1) {
 					return GenRetCode(EADefine.EA_RET_END_OF_FILE);
 				}
 
-				iTo = iTotalCount;
-
 				// 这里需要分页处理
-				return GetContactListInXml(iFrom, iTo);
+				return GetContactListInXml(iFrom);
 			}
 			
 			if (sAction.equals(EADefine.EA_ACT_GET_CONTACT_DETAIL)) {
@@ -179,7 +177,7 @@ public class ContactManager extends PageGen {
 
 	}
 
-	String GetContactList(int iFrom, int iTo) {
+	String GetContactList(int iFrom) {
 		/*
 		 * <ContactList> <TotalCount>16</TotalCount>
 		 * 
@@ -204,15 +202,12 @@ public class ContactManager extends PageGen {
 		sXml.append(iCallCount);
 		sXml.append("</TotalCount>");*/
 
-		if (iCallCount < iTo) {
-			iTo = iCallCount;
-		}
 
 		if (iFrom < 0) {
 			iFrom = 0;
 		}
 
-		List<ContactInfo> contactList = ContactApi.GetContactList(iFrom, iTo);
+		List<ContactInfo> contactList = ContactApi.GetContactList(iFrom);
 		
 		if (contactList == null || contactList.size() < 1) {
 			return GenRetCode(EADefine.EA_RET_END_OF_FILE);
@@ -261,7 +256,7 @@ public class ContactManager extends PageGen {
 	}
 
 
-	String GetContactListInXml(int iFrom, int iTo) {
+	String GetContactListInXml(int iFrom) {
 		/*
 		 * <ContactList> <TotalCount>16</TotalCount>
 		 * 
@@ -282,15 +277,11 @@ public class ContactManager extends PageGen {
 		sXml.append(iCallCount);
 		sXml.append("</TotalCount>");
 
-		if (iCallCount < iTo) {
-			iTo = iCallCount;
-		}
-
 		if (iFrom < 0) {
 			iFrom = 0;
 		}
 
-		List<ContactInfo> contactList = ContactApi.GetContactList(iFrom, iTo);
+		List<ContactInfo> contactList = ContactApi.GetContactList(iFrom);
 		
 		if (contactList == null || contactList.size() < 1) {
 			return GenRetCode(EADefine.EA_RET_END_OF_FILE);

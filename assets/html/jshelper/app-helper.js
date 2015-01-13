@@ -31,7 +31,7 @@ function OnClickRemvoeApp(sAppName) {
 function AppGenLink(sName, sPackageName, sVersionName) {
 	var sSubName = decodeURIComponent(sName);
 	sSubName = sSubName.sub(MAX_APP_NAME_LEN);
-	var sLink = '<dl class="filelist" id="' + GetID(sPackageName) + '">';
+	var sLink = '<dl class="fileItem" id="' + GetID(sPackageName) + '">';
 
 	sLink += "<dt><img width='48' height='48' src=\"?action=getappicon&appname="
 			+ sName + "\" title=\"" + decodeURIComponent(sPackageName) + " V" + decodeURIComponent(sVersionName) + "\"></dt>";
@@ -57,7 +57,7 @@ function AppXmlParser(xml) {
 				$("#app-list").append(fLink);
 				bHaveData = 1;
 			});
-
+	
 }
 
 function OnInstallApp(){
@@ -73,6 +73,7 @@ function OnRefreshApp(){
 }
 
 function OnAppInit() {
+	$("#app-div").fadeIn(1000);
 	GetAppList();
 	$("#app-list").html("");
 		$('#file_upload').uploadify({

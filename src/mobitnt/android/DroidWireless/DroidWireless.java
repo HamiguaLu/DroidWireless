@@ -86,16 +86,16 @@ public class DroidWireless extends Activity implements
 		tDevIP.setText(sUrl);
 
 		View view = this.getWindow().getDecorView();
-		view.setBackgroundColor(0xffEFEFEF);
+		view.setBackgroundColor(Color.WHITE);
 
 		View v = findViewById(R.id.MainScreen);
 		v.setOnClickListener(this);
 
 		tTitle.setTextColor(0xff2FBFF4);
-		tAd.setTextColor(Color.YELLOW);
-		tCode.setTextColor(Color.WHITE);
+		tAd.setTextColor(Color.GREEN);
+		tCode.setTextColor(0xff2FBFF4);
 		tDevIP.setTextColor(0xff2FBFF4);
-		tips.setTextColor(Color.WHITE);
+		tips.setTextColor(0xff2FBFF4);
 
 		m_mainApp = this;
 

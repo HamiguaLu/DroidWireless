@@ -12,7 +12,6 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
 import mobitnt.net.SrvSock;
-import mobitnt.net.DroidWirelessService;
 import mobitnt.util.EADefine;
 import mobitnt.util.EAUtil;
 import mobitnt.util.HttpRequestHelper;

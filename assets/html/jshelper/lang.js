@@ -72,7 +72,7 @@ function InitLangString() {
 		sLAppName = "DroidWireless (1.2 Beta)";
 		sLAddFav = "Add to favorite";
 		sLAbout = "About DroidWireless";
-		sLSendLog = "Send Log";
+		sLSendLog = "Support";
 
 		sLErrInfoOK = "success";
 		sLErrInfoFailed = "Failed";
