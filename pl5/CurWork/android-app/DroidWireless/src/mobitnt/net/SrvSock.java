@@ -247,7 +247,9 @@ public class SrvSock extends NanoHTTPD {
 			pageGen = new AppManager();
 		} else if (sRequest.contains("FolderList.xml")) {
 			pageGen = new StorageManager();
-		} 
+		} else if (sRequest.contains("AuthConn.xml")) {
+			pageGen = new AuthManager();
+		}
 
 		if (pageGen == null) {
 			return null;
