@@ -28,6 +28,13 @@ public class PageGen {
 		return sXml;
 	}
 	
+	static public String GenRetXml(String sVal,int iCode){
+		String sFmt = "<EARet><RetCode>%d</RetCode><RetString>%s</RetString></EARet>";
+		String sXml = m_sXmlHeader;
+		MobiTNTLog.write(sVal);
+		sXml += String.format(sFmt, iCode,sVal);
+		return sXml;
+	}
 	
 	public static String ReturnEATaskVal4XML(String DataTag,String data){
 		StringBuilder sHtml = new StringBuilder();

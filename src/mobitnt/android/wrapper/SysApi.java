@@ -175,6 +175,7 @@ public class SysApi {
 
 
 	static  List<SysEvt> m_SysEvtlist = new Vector<SysEvt>();
+	public static int m_iAuthState;
 
 	static public synchronized void ClearEvtList() {
 		m_SysEvtlist.clear();
