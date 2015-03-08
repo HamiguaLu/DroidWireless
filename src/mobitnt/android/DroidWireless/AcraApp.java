@@ -8,7 +8,7 @@ import android.app.Application;
 
 @ReportsCrashes(
     formKey = "", // This is required for backward compatibility but not used
-    formUri = "http://a.mobitnt.com/acr.php"
+    formUri = "http://a.mobitnt.com/dwcr.php"
 )
 
 public class AcraApp extends Application {
