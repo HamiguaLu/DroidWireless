@@ -114,6 +114,7 @@ function InitLangString() {
 		sLEmail = "EMail";
 		sLPassword = "Password";
 		sLSend = "Send";
+		sLChooseContact = "Select contact";
 		sLContent = "Content";
 		sLRecvEmpty = "Receiver is empty";
 		sLTo = "To";
@@ -233,6 +234,7 @@ function InitLangString() {
 		sLEmail = "电子邮件";
 		sLPassword = "密码";
 		sLSend = "发送";
+		sLChooseContact = "选择联系人";
 		sLContent = "短信内容";
 		sLSelectDate = "选择日期";
 		sLRecvEmpty = "接收者为空";

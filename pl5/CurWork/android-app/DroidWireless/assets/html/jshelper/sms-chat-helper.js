@@ -494,7 +494,7 @@ function OnChatInit() {
 	g_iContactCount = 0;
 	
 	$("#SmsEditorContent").attr("value","");
-
+	$("#BTN-SEL-CONTACT").html(sLChooseContact);
 	$("#BTN-BACK-TO-SMS").html(sLBack);
 	//$("#ContactTitle").html(sLPageNavCONTACT);
 	$("#SEND-SMS-BTN").html(sLSend);
