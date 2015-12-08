@@ -5,8 +5,8 @@
     android:versionName="2.2" >
 
     <uses-sdk
-        android:minSdkVersion="14"
-        android:targetSdkVersion="14" />
+        android:minSdkVersion="16"
+        android:targetSdkVersion="16" />
 
     <application
         android:name="AcraApp"

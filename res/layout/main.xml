@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-     xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:background="@drawable/bk"
+    tools:context=".DroidWireless" >
 
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/MainScreen"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:screenOrientation="sensorPortait" >
+        android:layout_height="fill_parent" >
 
         <ImageView
             android:id="@+id/imageSync"

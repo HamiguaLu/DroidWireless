@@ -91,11 +91,11 @@ public class DroidWireless extends Activity implements
 		View v = findViewById(R.id.MainScreen);
 		v.setOnClickListener(this);
 
-		tTitle.setTextColor(0xff2FBFF4);
-		tAd.setTextColor(Color.GREEN);
-		tCode.setTextColor(0xff2FBFF4);
-		tDevIP.setTextColor(0xff2FBFF4);
-		tips.setTextColor(0xff2FBFF4);
+		tTitle.setTextColor(Color.BLACK);
+		tAd.setTextColor(Color.BLACK);
+		tCode.setTextColor(Color.BLACK);
+		tDevIP.setTextColor(Color.BLACK);
+		tips.setTextColor(Color.BLACK);
 
 		m_mainApp = this;
 
